@@ -1,0 +1,17 @@
+.card {
+    display: flex;
+    border: 1px solid black;
+    height: 140px;
+    width: 70px;
+    margin: 8px 0;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    background-color: brown;
+    box-shadow: 11px 11px 12px 1px rgba(0, 0, 0, 0.54);
+    -webkit-box-shadow: 11px 11px 12px 1px rgba(0, 0, 0, 0.54);
+    -moz-box-shadow: 11px 11px 12px 1px rgba(0, 0, 0, 0.54);
+    font-weight: bold;
+    font-size: 24px;
+    color: white;
+}

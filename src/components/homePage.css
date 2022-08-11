@@ -1,0 +1,26 @@
+.home-page {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    align-items: center;
+    border: 1px solid black;
+    padding: 24px 8px;
+}
+
+.btn {
+    margin-top: 18px;
+    width: 100px;
+    background-color: lightskyblue;
+    border: 1px solid black;
+    border-radius: 4px;
+    font-weight: bold;
+    padding: 4px;
+    cursor: pointer;
+}
+
+.input {
+    font-weight: bold;
+    text-align: center;
+    color: black;
+    padding: 4px;
+}

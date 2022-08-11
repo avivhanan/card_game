@@ -1,0 +1,45 @@
+.score-page {
+    border: 1px solid black;
+    width: 250px;
+    height: 300px;
+}
+
+.exit-btn-wraper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 4px;
+    padding: 4px;
+}
+
+.score-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    height: 100%;
+    color: red;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.exit-btn {
+    cursor: pointer;
+    background-color: rgb(214, 24, 24);
+    border: 1px solid black;
+}
+
+.again-btn {
+    width: 80px;
+    padding: 12px;
+    background-color: lightskyblue;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-bottom: 24px;
+    border: 1px solid black;
+}
