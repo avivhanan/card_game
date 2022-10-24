@@ -8,7 +8,7 @@ export default function HomePage(props) {
 
     const validName = () => {
         if (name.length > 0)
-            props.start(name)
+            props.onStart(name)
         else {
             alert('enter ur name')
         }

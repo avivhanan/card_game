@@ -6,7 +6,7 @@ export default function Table(props) {
     sorted.sort((a, b) => {
         return b.win - a.win;
     });
-    console.log(sorted)
+
     return (
         <div className='table'>
             <table>
@@ -18,9 +18,10 @@ export default function Table(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    {sorted.map((val) => {
+                    {sorted.map((val, i) => {
+
                         return (
-                            <tr key={val.name}>
+                            <tr key={i}>
                                 <td>{val.name}</td>
                                 <td>{val.win}</td>
                                 <td>{val.lose}</td>

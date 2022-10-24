@@ -1,12 +1,16 @@
 .game {
     display: flex;
-    border: 1px solid black;
+    border: 1px solid rgb(0, 0, 0);
     width: 500px;
+    height: 300px;
     align-items: center;
     justify-content: space-around;
     padding: 12px;
-    background: rgb(76, 251, 63);
-    background: radial-gradient(circle, rgba(76, 251, 63, 1) 0%, rgba(166, 252, 70, 0.7822479333530288) 100%);
+    background-image: url('card-table.jpg');
+    background-size: 100% 100%;
+    background-position: center;
+    color: white;
+    font-size: 8px;
 }
 
 .game-box {
@@ -20,15 +24,17 @@
 
 .game-btn {
     margin-top: 12px;
+    border: 2px solid rgb(82, 10, 10);
     padding: 8px;
     width: 70px;
     cursor: pointer;
-    background-color: brown;
+    background-color: rgb(255, 0, 0);
     font-weight: bold;
-    font-size: 18px;
+    font-size: 14px;
+    color: white;
 }
 
 .game-div-text {
     font-weight: bold;
-    font-size: 18px;
+    font-size: 14px;
 }

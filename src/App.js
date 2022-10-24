@@ -7,23 +7,26 @@ import GamePage from './components/GamePage';
 import Player from './classes/Player';
 import CardDeck from './classes/CardDeck';
 
-let player, pc;
+
 function App() {
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState('home');
+  const [player, setPlayer] = useState()
+  const [pc, setPc] = useState()
   const [players, setPlayers] = useState([]);
+  console.log(players)
 
   const showPage = () => {
-    if (page == 0)
-      return <HomePage start={initGame} players={players} />
-    if (page == 1) {
-      return <GamePage player={player} pc={pc} setPage={setPage} />
+    if (page == 'home')
+      return <HomePage onStart={onStart} players={players} />
+    if (page == 'game') {
+      return <GamePage player={player} pc={pc} players={players} setPlayer={setPlayer} setPc={setPc} setPlayers={setPlayers} setPage={setPage} />
     }
-    else {
-      return <ScorePage player={player} pc={pc} setPage={setPage} dealCards={dealNewCards} />
+    if (page == 'score') {
+      return <ScorePage player={player} pc={pc} setPage={setPage} dealCards={dealCards} />
     }
   }
 
-  const dealNewCards = () => {
+  const dealCards = () => {
     let fullDeck = new CardDeck()
     let playerCards = [], pcCards = [];
     for (let i = 0; i < 26; i++) {
@@ -33,32 +36,32 @@ function App() {
     return [playerCards, pcCards]
   }
 
-  const initGame = (name) => {
-    const [playerDeck, pcDeck] = dealNewCards();
+  const onStart = (name) => {
+    const decks = dealCards()
+    const playerDeck = decks[0]
+    const pcDeck = decks[1]
 
-    // Use find instead forEach
+    let newPc = new Player('pc', pcDeck)
+    setPc(newPc)
+
     let existingPlayer;
-    players.forEach((player) => {
-      if (player.name == name) {
-        existingPlayer = player;
+    players.forEach((val) => {
+      if (val.name == name) {
+        existingPlayer = val;
       }
     })
 
-    if (pc) {
-      pc.cards = pcDeck;
-    } else {
-      pc = new Player('pc', pcDeck)
+    if (existingPlayer) {
+      let newPlayer = existingPlayer;
+      newPlayer.cards = playerDeck;
+      setPlayer(newPlayer)
     }
 
-    if (existingPlayer) {
-      player = existingPlayer;
-      player.cards = playerDeck;
-      setPlayers([...players])
-    } else {
-      player = new Player(name, playerDeck)
-      setPlayers([...players, player])
+    else {
+      let newPlayer = new Player(name, playerDeck)
+      setPlayer(newPlayer)
     }
-    setPage(1);
+    setPage('game');
   }
 
   return (

@@ -3,36 +3,54 @@ import Card from './Card'
 import './game.css'
 import './card.css'
 
-let playerPoints = 0, pcPoints = 10;
 export default function GamePage(props) {
     const [cardIndex, setCardIndex] = useState(0)
+    const [pcPoints, setPcPoints] = useState(0)
+    const [playerPoints, setPlayerPoints] = useState(0)
 
     const onNext = () => {
-        if (props.pc.cards[cardIndex] > props.player.cards[cardIndex]) {
-            pcPoints++;
+        let newPlayer = { ...props.player }
+        if (props.pc.cards[cardIndex].number > newPlayer.cards[cardIndex].number) {
+            setPcPoints(pcPoints + 1)
         }
-        else if (props.pc.cards[cardIndex] < props.player.cards[cardIndex]) {
-            playerPoints++;
+        else if (props.pc.cards[cardIndex].number < newPlayer.cards[cardIndex].number) {
+            setPlayerPoints(playerPoints + 1)
         }
 
         if (cardIndex == 25) {
-            props.player.games++
+            newPlayer.games++
 
             if (playerPoints > pcPoints) {
-                props.player.win++
-                props.player.lastGame = 'win'
+                newPlayer.win++
+                newPlayer.lastGame = `${newPlayer.name} u won`
             }
             else if (playerPoints < pcPoints) {
-                props.player.lose++
-                props.player.lastGame = 'lose'
+                newPlayer.lose++
+                newPlayer.lastGame = `${newPlayer.name} u lose`
             }
             else {
-                props.player.lastGame = 'draw'
+                newPlayer.lastGame = 'its adraw'
 
             }
-            playerPoints = 0;
-            pcPoints = 0
-            props.setPage(2)
+            setPlayerPoints(0)
+            setPcPoints(0)
+            props.setPlayer(newPlayer)
+            //
+            let existingPlayerIndex;
+            let coppyPlayers = [...props.players]
+            coppyPlayers.forEach((val, i) => {
+                if (val.name == newPlayer.name) {
+                    existingPlayerIndex = i;
+                }
+            })
+            if (existingPlayerIndex >= 0) {
+                coppyPlayers[existingPlayerIndex] = newPlayer
+            }
+            else {
+                coppyPlayers.push(newPlayer)
+            }
+            props.setPlayers(coppyPlayers)
+            props.setPage('score')
 
         }
         else {
@@ -44,7 +62,7 @@ export default function GamePage(props) {
         <div className='game'>
             <div className='game-box'>
                 <div className='game-div-text'>{props.player.name}</div>
-                <Card cards={props.player.cards[cardIndex]} />
+                <Card card={props.player.cards[cardIndex]} />
                 <div className='game-div-text'>{props.player.name} Score: {playerPoints}</div>
             </div>
             <div className='game-details'>
@@ -53,7 +71,7 @@ export default function GamePage(props) {
             </div>
             <div className='game-box'>
                 <div className='game-div-text'>{props.pc.name}</div>
-                <Card cards={props.pc.cards[cardIndex]} />
+                <Card card={props.pc.cards[cardIndex]} />
                 <div className='game-div-text'>Pc Score: {pcPoints}</div>
             </div>
         </div>

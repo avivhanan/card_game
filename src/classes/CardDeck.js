@@ -1,11 +1,10 @@
 class CardDeck {
-    type = ['♦', '♥', '♠', '♣'];
     cards = [];
 
     constructor() {
         for (let i = 1; i < 14; i++) {
             for (let j = 0; j < 4; j++) {
-                this.cards.push(i);
+                this.cards.push({ number: i, type: ['♦', '♥', '♠', '♣'][j] });
             }
         }
     }
