@@ -3,7 +3,7 @@ import Card from './Card'
 import './game.css'
 import './card.css'
 
-let playerPoints = 0, pcPoints = 0;
+let playerPoints = 0, pcPoints = 10;
 export default function GamePage(props) {
     const [cardIndex, setCardIndex] = useState(0)
 
