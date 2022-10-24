@@ -10,7 +10,7 @@ export default function HomePage(props) {
         if (name.length > 0)
             props.onStart(name)
         else {
-            alert('enter ur name')
+            alert('Enter ur name')
         }
     }
 
